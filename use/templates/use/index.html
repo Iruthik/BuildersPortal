@@ -43,6 +43,15 @@
             <div class="row justify-content-center">
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><script>alert("{{ message }}")</script>
+                  <h3 class="text-success">{{ message }}</h3></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
                 <form  action="register" method="POST" class="mx-1 mx-md-4" >
@@ -88,16 +97,7 @@
                     </div>
   
                   </form>
-                  <div>
-                    {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><h3 class = "text-danger">{{ message }}</h3</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    
-                  </div>
+                 
               </div>
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
