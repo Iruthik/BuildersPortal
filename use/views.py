@@ -3,7 +3,7 @@ from django import forms
 import django
 from django.shortcuts import redirect, render
 from django.contrib import messages
-
+from .models import Worker
 
 from django.contrib.auth.models import User,auth
 
@@ -106,6 +106,7 @@ def logout(request):
 
 
 def home(request):
+   
     return render(request,'use/home.html')
 
 
@@ -117,3 +118,36 @@ def supplierupdate(request):
 
 def customerupdate(request):
     return render(request,'use/customer_update.html')
+
+def workerprofile(request):
+     if request.method == 'POST':
+        firstname = request.POST['firstname']
+        lastname  = request.POST['lastname']
+        phone = request.POST['phone']
+        description=request.POST['description']
+        rate =request.POST['rate']
+        location=request.POST['location']
+        category = request.POST['category']
+        availability=request.POST['availability']
+
+        print(firstname)
+        print(lastname)
+        print(category)
+        print(availability)
+
+
+        context= {'firstname':firstname,
+                   'lastname':lastname,
+                   'phone':phone,
+                   'description':description,
+                   'rate':rate,
+                   'location':location,
+                   'category':category,
+                   'availability':availability
+        }
+        
+
+        worker= Worker(firstname=firstname,lastname=lastname,phone=phone,description=description,rate=rate,location=location,category=category,availability=availability)
+        worker.save()
+        print("worker profile created")
+     return render(request,'use/profile.html',context)    
