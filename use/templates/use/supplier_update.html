@@ -1,1 +1,98 @@
-<h1>supplier</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="/" class="navbar-brand link-warning"><h2>BuildersPortal</h2></a>
+        <!-- <div class="navbar">
+          <a href="login" class="btn btn-warning"><h2>Login</h2></a>
+        </div> -->
+    </nav>
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                    <div class="row py-4">
+                        <div class="image-area mt-4">
+                            <img id="imageResult" src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+                        </div>
+                        <div class="col-lg-6 mx-auto">
+                           <!-- Upload image input-->
+                             <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                                <input name="profilepic" id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+
+
+                            </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 border-right">
+
+                <div class="p-3 py-5">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h2 class="text-right">Profile Update</h2>
+                    </div>
+                    <div class="row mt-2">
+                        <form action="supplierprofile" method="POST">
+                            {% csrf_token %}
+                        <div class="col-md-12"><label class="labels">Shop Name</label><input type="text" class="form-control" placeholder="First Name" name="shopname"></div>
+                        <div class="col-md-12"><label class="labels">Vendor Name</label><input type="text" class="form-control" value="" placeholder="Last Name" name="vendorname"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" class="form-control" placeholder="Phone number" name="phone"></div>
+                        <div class="col-md-12"><label class="labels">Description</label><textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="description"></textarea></div>
+                        <div class="col-md-12"><label class="labels">Rate</label><input type="number" class="form-control" placeholder="Rate" name="rate"></div>
+                        <div class="col-md-12"><label class="labels">Location</label><input type="text" class="form-control" placeholder="Location" name="location"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">Category</label>
+                            <select  class="form-select" aria-label="Default select example" name ="category">
+                            <option selected>Select Category</option>
+                            <option value="Architects">Hardwere and Tools</option>
+                            <option value="Bricks">Bricks</option>
+                            <option value="Mill">Mill</option>
+                            <option value="Paint">Paint</option>
+                            <option value="Tiles and Marbles">Tiles and Marbles</option>
+                            <option value="Interiour">Interiour</option>
+                            <option value="Furniture">Furniture</option>
+                            
+                          </select>
+                        </div>
+                        <div class="col-md-6"><label class="labels">Availability</label>
+                            <select  class="form-select" aria-label="Default select example" name ="availability">
+                            <option selected>Available/Not</option>
+                            <option value="available">Available</option>
+                            <option value="not">Not</option>
+
+                        </select>
+                    </div>
+                    </div>
+                    <div class="mt-5 text-center"><button class="btn btn-warning profile-button" type="submit">Save Profile</button>
+                    </form>
+                    </div>
+
+                </div>
+            </div>
+         >
+        </div>
+    </div>
+    </div>
+    </div>
+
+</body>
+</html>

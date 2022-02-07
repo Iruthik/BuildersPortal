@@ -12,4 +12,5 @@ path('register/supplierupdate',views.supplierupdate,name='supplierupdate'),
 path('register/customerupdate',views.customerupdate,name='customerupdate'),
 path('register/home',views.home,name='home'),
 path('register/workerprofile',views.workerprofile,name='workerprofile'),
+path('register/supplierprofile',views.supplierprofile,name='supplierprofile'),
 ]

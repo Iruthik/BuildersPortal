@@ -1,9 +1,9 @@
-import re
+from multiprocessing import context
+from urllib import request
 from django import forms
-import django
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from .models import Worker
+from .models import Worker,Supplier
 
 from django.contrib.auth.models import User,auth
 
@@ -150,4 +150,38 @@ def workerprofile(request):
         worker= Worker(firstname=firstname,lastname=lastname,phone=phone,description=description,rate=rate,location=location,category=category,availability=availability)
         worker.save()
         print("worker profile created")
-     return render(request,'use/profile.html',context)    
+     return render(request,'use/profile.html',context)
+
+
+def supplierprofile(request):
+
+     if request.method == 'POST':
+        shopname = request.POST['shopname']
+        vendorname  = request.POST['vendorname']
+        phone = request.POST['phone']
+        description=request.POST['description']
+        rate =request.POST['rate']
+        location=request.POST['location']
+        category = request.POST['category']
+        availability=request.POST['availability']
+
+        print(shopname)
+        print(vendorname)
+        print(category)
+        print(availability)
+
+        context= {'shopname':shopname,
+                   'vendorname':vendorname,
+                   'phone':phone,
+                   'description':description,
+                   'rate':rate,
+                   'location':location,
+                   'category':category,
+                   'availability':availability
+        }
+
+        supplier = Supplier(shopname=shopname,vendorname=vendorname,phone=phone,description=description,rate=rate,location=location,category=category,availability=availability)
+        supplier.save()
+        print("Supplier profile created")
+
+     return render(request,'use/profile_supplier.html',context)

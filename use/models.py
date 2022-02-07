@@ -16,3 +16,19 @@ class Worker(models.Model):
         location=models.CharField(max_length=200)
         category=models.CharField(max_length=200)
         availability=models.CharField(max_length=200)
+
+class Supplier(models.Model):
+
+        
+        def __str__(self):
+             return self.shopname
+
+        shopname = models.CharField(max_length=200)
+        vendorname = models.CharField(max_length=200)
+        phone     = models.CharField(max_length=200)
+        description= models.CharField(max_length=2000)
+        rate=models.FloatField()
+        location=models.CharField(max_length=200)
+        category=models.CharField(max_length=200)
+        availability=models.CharField(max_length=200)
+
