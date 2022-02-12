@@ -3,7 +3,7 @@ from urllib import request
 from django import forms
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from .models import Worker,Supplier
+from .models import Worker,Supplier,Customer
 
 from django.contrib.auth.models import User,auth
 
@@ -120,68 +120,74 @@ def customerupdate(request):
     return render(request,'use/customer_update.html')
 
 def workerprofile(request):
+
      if request.method == 'POST':
-        firstname = request.POST['firstname']
-        lastname  = request.POST['lastname']
-        phone = request.POST['phone']
-        description=request.POST['description']
-        rate =request.POST['rate']
-        location=request.POST['location']
-        category = request.POST['category']
-        availability=request.POST['availability']
-
-        print(firstname)
-        print(lastname)
-        print(category)
-        print(availability)
-
-
-        context= {'firstname':firstname,
-                   'lastname':lastname,
-                   'phone':phone,
-                   'description':description,
-                   'rate':rate,
-                   'location':location,
-                   'category':category,
-                   'availability':availability
-        }
+        worker= Worker()
+        worker.firstname = request.POST['firstname']
+        worker.lastname  = request.POST['lastname']
+        worker.phone = request.POST['phone']
+        worker.description=request.POST['description']
+        worker.rate =request.POST['rate']
+        worker.location=request.POST['location']
+        worker.category = request.POST['category']
+        worker.availability=request.POST['availability']
         
+        if len(request.FILES) != 0:
+              worker.image = request.FILES['image']
 
-        worker= Worker(firstname=firstname,lastname=lastname,phone=phone,description=description,rate=rate,location=location,category=category,availability=availability)
+
+       
         worker.save()
-        print("worker profile created")
-     return render(request,'use/profile.html',context)
+        # messages.success(request,'WorkerProfile Updated')
+       
+     return render(request,'use/login.html')
 
 
 def supplierprofile(request):
 
      if request.method == 'POST':
-        shopname = request.POST['shopname']
-        vendorname  = request.POST['vendorname']
-        phone = request.POST['phone']
-        description=request.POST['description']
-        rate =request.POST['rate']
-        location=request.POST['location']
-        category = request.POST['category']
-        availability=request.POST['availability']
+        supplier =Supplier() 
+        supplier.shopname = request.POST['shopname']
+        supplier.vendorname  = request.POST['vendorname']
+        supplier.phone = request.POST['phone']
+        supplier.description=request.POST['description']        
+        supplier.location=request.POST['location']
+        supplier.category = request.POST['category']
+        supplier.availability=request.POST['availability']
 
-        print(shopname)
-        print(vendorname)
-        print(category)
-        print(availability)
+        if len(request.FILES) != 0:
+              supplier.image = request.FILES['image']
 
-        context= {'shopname':shopname,
-                   'vendorname':vendorname,
-                   'phone':phone,
-                   'description':description,
-                   'rate':rate,
-                   'location':location,
-                   'category':category,
-                   'availability':availability
-        }
 
-        supplier = Supplier(shopname=shopname,vendorname=vendorname,phone=phone,description=description,rate=rate,location=location,category=category,availability=availability)
+        
+        
         supplier.save()
         print("Supplier profile created")
 
-     return render(request,'use/profile_supplier.html',context)
+     return render(request,'use/login.html',)
+
+def customerprofile(request):
+    
+      if request.method == 'POST':
+        firstname = request.POST['firstname']
+        lastname  = request.POST['lastname']
+        location=request.POST['location']
+        phone = request.POST['phone']
+        
+        
+        print(firstname)
+        print(lastname)
+        print(location)
+        print(phone)
+
+        context= {'firstname':firstname,
+                   'lastname':lastname,
+                   'phone':phone,
+                   'location':location
+                   
+        }
+        customer = Customer(firstname=firstname,lastname=lastname,phone=phone,location=location)
+        customer.save()
+        print("Customer profile created")
+
+      return render(request,'use/profile_customer.html',context)     

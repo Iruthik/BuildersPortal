@@ -15,54 +15,93 @@
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <a href="/" class="navbar-brand link-warning"><h2>BuildersPortal</h2></a>
-        <!-- <div class="navbar">
-          <a href="login" class="btn btn-warning"><h2>Login</h2></a>
-        </div> -->
     </nav>
-    <div class="container rounded bg-white mt-5 mb-5">
-        <div class="row">
-            <div class="col-md-3 border-right">
-                    <div class="row py-4">
-                        <div class="image-area mt-4">
-                            <img id="imageResult" src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
-                        </div>
-                        <div class="col-lg-6 mx-auto">
-                           <!-- Upload image input-->
-                             <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                                <input name="profilepic" id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
-                               
-                                
-                            </div>
-                
-                            
-                           
-                            
-                    </div>
+   
+    <div class="row">
+
+
+        <div class="col-md-12">
+         <div>
+<section class="vh-100" style="background-color: #eee;">
+<div class="container h-100">
+<div class="row d-flex justify-content-center align-items-center h-100">
+<div class="col-lg-12 col-xl-11">
+  <div class="card text-black" style="border-radius: 25px;">
+    <div class="card-body p-md-5">
+      <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+          <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Profile Update</p>
+
+          <form  action="workerprofile" method="POST" class="mx-1 mx-md-4" enctype="multipart/form-data" >
+           
+          
+            <form class="mx-1 mx-md-4">
+              {% csrf_token %}
+              
+              <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="input-file-now" class="file-upload" name="image"/>
+                      </div>
+                  <label class="form-label" for="form3Example1c">Choose Image</label>
                 </div>
-            </div>
-            <div class="col-md-5 border-right">
-                
-                <div class="p-3 py-5">
-                   
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h2 class="text-right">Profile Update</h2>
-                    </div>
-                    <div class="row mt-2">
-                        <form action="workerprofile" method="POST">
-                            {% csrf_token %}
-                        <div class="col-md-12"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="First Name" name="firstname"></div>
-                        <div class="col-md-12"><label class="labels">Last Name</label><input type="text" class="form-control" value="" placeholder="Last Name" name="lastname"></div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" class="form-control" placeholder="Phone number" name="phone"></div>
-                        <div class="col-md-12"><label class="labels">Job Description</label><textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="description"></textarea></div>
-                        <div class="col-md-12"><label class="labels">Rate</label><input type="number" class="form-control" placeholder="Rate" name="rate"></div>
-                        <div class="col-md-12"><label class="labels">Location</label><input type="text" class="form-control" placeholder="Location" name="location"></div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6"><label class="labels">Category</label>
-                            <select  class="form-select" aria-label="Default select example" name ="category">
-                            <option selected>Select Category</option>
+              </div>
+              
+
+              <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                  <input type="text" id="form3Example1c" name="firstname" class="form-control" />
+                  <label class="form-label" for="form3Example1c">First Name</label>
+                </div>
+              </div>
+
+              <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                  <input type="text" id="form3Example3c" name="lastname" class="form-control" />
+                  <label class="form-label" for="form3Example3c">Last Name</label>
+                </div>
+              </div>
+
+              <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                  <input type="phone" id="form3Example4c" name="phone" class="form-control" />
+                  <label class="form-label" for="form3Example4c">Phone</label>
+                </div>
+              </div>
+              <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="description"></textarea>
+                  <label class="form-label" for="form3Example4c">Job Description</label>
+                </div>
+              </div>
+
+              <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                  <input type="number" id="form3Example4cd" name="rate" class="form-control" />
+                  <label class="form-label" for="form3Example4cd">Rate</label>
+                </div>
+              </div>
+
+              <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                  <input type="text" id="form3Example3c" name="location" class="form-control" />
+                  <label class="form-label" for="form3Example3c">Location</label>
+                </div>
+              </div>
+
+              <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+              <select  class="form-select" aria-label="Default select example" name ="category">
+                <option selected>Select Category</option>
                             <option value="Architects">Architects</option>
                             <option value="Gardening">Gardening</option>
                             <option value="InteriourDesigners">InteriourDesigners</option>
@@ -72,28 +111,48 @@
                             <option value="Builders">Builder</option>
                             <option value="Painter">Painter</option>
                             <option value="RoofWorkers">Roofing</option>
-                          </select>
-                        </div>
-                        <div class="col-md-6"><label class="labels">Availability</label>
-                            <select  class="form-select" aria-label="Default select example" name ="availability">
-                            <option selected>Available/Not</option>
-                            <option value="available">Available</option>
-                            <option value="not">Not</option>
-                           
-                        </select>
-                    </div>
-                    </div>
-                    <div class="mt-5 text-center"><button class="btn btn-warning profile-button" type="submit">Save Profile</button>
-                    </form>
-                    </div>
-                    
-                </div>
+              </select>
             </div>
-         >
+          </div>
+
+            
+              <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+              <select  class="form-select" aria-label="Default select example" name ="availability">
+                <option selected>Available/Not</option>
+                <option value="available">Available</option>
+                <option value="not">Not</option>
+               
+              </select>
+            </div>
+          </div>
+
+              <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                <button type="submit" class="btn btn-warning btn-lg">Save Profile</button>
+              </div>
+
+            </form>
+            
         </div>
+        <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+          <img src="https://image.shutterstock.com/image-vector/friendly-builder-helmet-carrying-level-260nw-278129696.jpg" class="img-fluid" alt="Sample image">
+
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
+  </div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</body>
+</html>
+    
     
 </body>
 </html>
