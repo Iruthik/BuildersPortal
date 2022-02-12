@@ -79,10 +79,44 @@
                         <input type="text" class="form-control form-control-lg" placeholder="Search Here">
                         <button type="submit" class="input-group-text btn-warning"><i class="bi bi-search me-2"></i> Search</button>
                     </div>
-                </form>
+                   </form>
+                    {% for worker in worker_list %}
+
+             <div class="row">
+              <div class="col-md-3 offset-md-2">
+                  {% if worker.image%}
+                    <img class="card" height="150px" width = "150px" src="{{ worker.image.url }}"/>
+                  {% else %}
+                     <img class="card" height="150px" width = "150px" src="https://icons.iconarchive.com/icons/blackvariant/button-ui-system-folders-drives/1024/Users-icon.png"/>
+                  {% endif %}
+              </div>
+              <div class="col-md-4">
+                  <h3>{{ worker.firstname }}</h3>
+                  <h5>{{ worker.lastname }}</h5>
+                  <h6>${{ worker.rate }}</h6>
+                  <h6>{{ worker.location }}</h6>
+
+              </div>
+              <div class="col-md-2">
+                  <a href="#" class="btn btn-success">Details</a>
+              </div>
+
+         </div>
+
+
+    {% endfor %}
+
+
                 </div>
-            </div>
+
+
         </div>
+
+
+            </div>
+
+
+
 
         </body>
         

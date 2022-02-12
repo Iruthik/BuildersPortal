@@ -106,8 +106,12 @@ def logout(request):
 
 
 def home(request):
-   
-    return render(request,'use/home.html')
+    worker_list = Worker.objects.all()
+    context={
+        'worker_list':worker_list
+    }
+    print(worker_list)
+    return render(request,'use/home.html',context)
 
 
 def workerupdate(request):
