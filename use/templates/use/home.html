@@ -91,14 +91,14 @@
                   {% endif %}
               </div>
               <div class="col-md-4">
-                  <h3>{{ worker.firstname }}</h3>
-                  <h5>{{ worker.lastname }}</h5>
-                  <h6>${{ worker.rate }}</h6>
-                  <h6>{{ worker.location }}</h6>
+                  <h3>Name:{{ worker.firstname }}</h3>
+                  <h6>Category:{{ worker.category }}</h6>
+                  <h6>Rate:${{ worker.rate }}</h6>
+                  <h6>Location:{{ worker.location }}</h6>
 
               </div>
               <div class="col-md-2">
-                  <a href="#" class="btn btn-success">Details</a>
+                  <a href="{% url 'detail' worker.id %}" class="btn btn-warning">Details</a>
               </div>
 
          </div>

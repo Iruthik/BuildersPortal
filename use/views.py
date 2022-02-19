@@ -195,3 +195,11 @@ def customerprofile(request):
         print("Customer profile created")
 
       return render(request,'use/profile_customer.html',context)     
+
+def detail(request,worker_id):
+    worker = Worker.objects.get(pk=worker_id)
+
+    context={
+        'worker':worker,
+    }
+    return render(request,'use/worker_detail.html',context)
