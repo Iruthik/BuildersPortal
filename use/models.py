@@ -2,6 +2,7 @@ from datetime import datetime
 import os
 from django.db import models
 from os.path import join
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Worker(models.Model):
@@ -14,7 +15,7 @@ class Worker(models.Model):
              filename="%s%s"%(current_time,old_name)
              return os.path.join('uploads/',filename)
      
-           
+      
         image = models.ImageField(upload_to=get_filename,null=True,blank=True)
         firstname = models.CharField(max_length=200)
         lastname  = models.CharField(max_length=200)

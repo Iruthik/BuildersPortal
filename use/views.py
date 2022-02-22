@@ -110,7 +110,7 @@ def home(request):
     context={
         'worker_list':worker_list
     }
-    print(worker_list)
+    # print(worker_list)
     return render(request,'use/home.html',context)
 
 
@@ -118,9 +118,11 @@ def workerupdate(request):
     return render(request,'use/worker_update.html')
 
 def supplierupdate(request):
+    
     return render(request,'use/supplier_update.html')    
 
 def customerupdate(request):
+    
     return render(request,'use/customer_update.html')
 
 def workerprofile(request):
@@ -143,7 +145,7 @@ def workerprofile(request):
        
         worker.save()
         # messages.success(request,'WorkerProfile Updated')
-       
+        # print(worker.image)
      return render(request,'use/login.html')
 
 
@@ -166,6 +168,7 @@ def supplierprofile(request):
         
         
         supplier.save()
+        
         print("Supplier profile created")
 
      return render(request,'use/login.html',)
@@ -178,11 +181,7 @@ def customerprofile(request):
         location=request.POST['location']
         phone = request.POST['phone']
         
-        
-        print(firstname)
-        print(lastname)
-        print(location)
-        print(phone)
+     
 
         context= {'firstname':firstname,
                    'lastname':lastname,
@@ -198,8 +197,30 @@ def customerprofile(request):
 
 def detail(request,worker_id):
     worker = Worker.objects.get(pk=worker_id)
-
+  
     context={
         'worker':worker,
     }
     return render(request,'use/worker_detail.html',context)
+
+def searchdisplay(request):
+    context={}
+    if request.method == 'POST':
+        word =  request.POST['word']
+        role = request.POST['role']
+        
+        if  word == "":
+            return redirect(request,'home')
+        else:     
+           searchwr= Worker.objects.filter(location__contains=word).all()
+              
+           context={
+                     'searchwr': searchwr
+                 }
+        #    if searchwr:
+        #         #  print(searchwr)
+              
+           print(context)
+           return redirect('searchdisplay')
+           
+    return render(request,'use/workersearch.html',context)

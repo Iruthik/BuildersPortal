@@ -15,8 +15,8 @@
             <a href="/" class=" navbar-brand link-warning"><h2>BuildersPortal</h2></a>
             <div class="navbar">
                 {% if user.is_authenticated %}
-                <p class="navbar-text text-white">Hello,{{ user.username }}</p>
-              <a href="logout" class="btn btn-warning"><h2>Logout</h2></a>
+                <p class="navbar-text text-white">Hello,&nbsp{{ user.username }}</p>
+                &nbsp &nbsp<a href="logout" class="btn btn-warning"><h2>Logout</h2></a>
               {% else %}
               <a href="use/login" class="btn btn-warning"><h2>Login</h2></a>
               {% endif %}
@@ -74,9 +74,20 @@
                 </div>
                 <div class="col py-3">
                  
-                  <form action="" class="">
+                  <form action="search" method="POST">
+                  
+                    <div class="form-outline flex-fill mb-0">
+                        {% csrf_token %}
+                       Filter: <select  class="form-select" aria-label="Default select example" name ="role">
+                          <option selected>Select Role</option>
+                          <option value="1">Worker</option>
+                          <option value="2">Supplier</option>
+                          <option value="3">Customer</option>
+                        </select>
+                      </div>
+                      <br>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-lg" placeholder="Search Here">
+                        <input type="text" class="form-control form-control-lg" placeholder="Search Here" name="word">
                         <button type="submit" class="input-group-text btn-warning"><i class="bi bi-search me-2"></i> Search</button>
                     </div>
                    </form>

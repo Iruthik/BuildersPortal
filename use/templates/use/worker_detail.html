@@ -13,8 +13,8 @@
         <a href="/" class=" navbar-brand link-warning"><h2>BuildersPortal</h2></a>
         <div class="navbar">
             {% if user.is_authenticated %}
-            <p class="navbar-text text-white">Hello,{{ user.username }}</p>
-          <a href="{% url 'logout' %}" class="btn btn-warning"><h2>Logout</h2></a>
+            <p class="navbar-text text-white">Hello,&nbsp{{ user.username }}</p>
+            &nbsp&nbsp <a href="{% url 'logout' %}" class="btn btn-warning"><h2>Logout</h2></a>
           {% else %}
           <a href="use/login" class="btn btn-warning"><h2>Login</h2></a>
           {% endif %}
@@ -22,24 +22,29 @@
     </nav>
     <div class="container">
         <div class="row">
+          <div class="col-md-12">
+            <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Worker Profile</p>
+
+          </div>
             <div class="col-md-6">
                 {% if worker.image%}
-                    <img class="card" height="300px" src="{{ worker.image.url }}"/>
+                    <img class="card" height="300px" width = "300px" src="{{ worker.image.url }}"/>
                   {% else %}
-                     <img class="card" height="150px" width = "150px" src="https://icons.iconarchive.com/icons/blackvariant/button-ui-system-folders-drives/1024/Users-icon.png"/>
+                     <img class="card" height="300px" width = "300px" src="https://icons.iconarchive.com/icons/blackvariant/button-ui-system-folders-drives/1024/Users-icon.png"/>
                   {% endif %}
              
             </div>
     
             <div class="col-md-6">
-                <h2>First Name  :{{ worker.firstname }}</h1>
+                <h2>First Name  :{{ worker.firstname }}</h2>
                 <h2>Last Name   :{{ worker.lastname }}</h2>
                 <h2>Description :{{ worker.description }}</h2> 
                 <h2>Phone       :{{ worker.phone }}</h2>   
                 <h2>Location    :{{ worker.location }}</h2>
                 <h2>Category    :{{ worker.category }}</h2>
                 <h2>Availability:{{ worker.availability }}</h2>
-                <h2>Rate        : ${{ worker.rate }}</h2>           
+                <h2>Rate        : ${{ worker.rate }}</h2>
+                <a href="{% url 'home' %}" class="btn btn-warning">Back</a>
             </div>
         </div>
     </div>
