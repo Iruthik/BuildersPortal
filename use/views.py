@@ -82,6 +82,8 @@ def register(request):
 
     else:
          return render(request,'use/register.html')   
+def alllogin(request):
+    return render(request,'use/alllogin.html')         
 
 def login(request):
 
@@ -99,7 +101,37 @@ def login(request):
             return redirect('login')    
 
     return render(request,'use/login.html')
+def supplierlogin(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
 
+        user = auth.authenticate(username=username,password=password)
+
+        if user is not None:
+            auth.login(request,user)
+            return redirect('supplierhome')
+        else:
+            messages.info(request,'invalid credentials')
+            return redirect('supplierlogin')    
+
+    return render(request,'use/supplierlogin.html')
+def customerlogin(request):
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(username=username,password=password)
+
+        if user is not None:
+            auth.login(request,user)
+            return redirect('customerhome')
+        else:
+            messages.info(request,'invalid credentials')
+            return redirect('customerlogin')    
+
+    return render(request,'use/customerlogin.html')
 def logout(request):
     auth.logout(request)
     return redirect('index')   
@@ -112,7 +144,10 @@ def home(request):
     }
     # print(worker_list)
     return render(request,'use/home.html',context)
-
+def supplierhome(request):
+    return render(request,'use/supplierhome.html')
+def customerhome(request):
+    return render(request,'use/customerhome.html')    
 
 def workerupdate(request):
     return render(request,'use/worker_update.html')
