@@ -22,6 +22,7 @@ path('customerhome',views.customerhome,name='customerhome'),
 path('register/workerprofile',views.workerprofile,name='workerprofile'),
 path('register/supplierprofile',views.supplierprofile,name='supplierprofile'),
 path('register/customerprofile',views.customerprofile,name='customerprofile'),
-path('register/home/<int:worker_id>/',views.detail,name='detail'),
+path('supplierdetail/<int:worker_id>/',views.detail,name='detail'),
+path('register/home/<int:supplier_id>/',views.detailsupplier,name='detailsupplier'),
 path('register/search',views.searchdisplay,name='searchdisplay'),
 ]

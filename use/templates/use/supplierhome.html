@@ -82,14 +82,14 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="logout">log out</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">log out</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col py-3">
                  
-                  <form action="search" method="POST">
+                  <form action="{% url 'searchdisplay' %}" method="POST">
                   
                     <div class="form-outline flex-fill mb-0">
                         {% csrf_token %}
@@ -106,25 +106,25 @@
                         <button type="submit" class="input-group-text btn-warning"><i class="bi bi-search me-2"></i> Search</button>
                     </div>
                    </form>
-                    {% for worker in worker_list %}
+                    {% for supplier in supplier_list %}
 
              <div class="row">
               <div class="col-md-3 offset-md-2">
-                  {% if worker.image%}
-                    <img class="card" height="150px" width = "150px" src="{{ worker.image.url }}"/>
+                  {% if supplier.image%}
+                    <img class="card" height="150px" width = "150px" src="{{ supplier.image.url }}"/>
                   {% else %}
                      <img class="card" height="150px" width = "150px" src="https://icons.iconarchive.com/icons/blackvariant/button-ui-system-folders-drives/1024/Users-icon.png"/>
                   {% endif %}
               </div>
               <div class="col-md-4">
-                  <h3>Name:{{ worker.firstname }}</h3>
-                  <h6>Category:{{ worker.category }}</h6>
-                  <h6>Rate:${{ worker.rate }}</h6>
-                  <h6>Location:{{ worker.location }}</h6>
+                  <h3>Name:{{ supplier.shopname }}</h3>
+                  <h6>Vendour:${{ supplier.vendorname }}</h6>
+                  <h6>Category:{{ supplier.category }}</h6>
+                  <h6>Location:{{ supplier.location }}</h6>
 
               </div>
               <div class="col-md-2">
-                  <a href="{% url 'detail' worker.id %}" class="btn btn-warning">Details</a>
+                  <a href="{% url 'detailsupplier' supplier.id %}" class="btn btn-warning">Details</a>
               </div>
 
          </div>

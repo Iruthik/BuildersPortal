@@ -21,7 +21,61 @@
           {% endif %}
         </div>
     </nav>
+    {% if searchwr %}
+    {% for worker in searchwr %}
+
+    <div class="row">
+     <div class="col-md-3 offset-md-2">
+         {% if worker.image%}
+           <img class="card" height="150px" width = "150px" src="{{ worker.image.url }}"/>
+         {% else %}
+            <img class="card" height="150px" width = "150px" src="https://icons.iconarchive.com/icons/blackvariant/button-ui-system-folders-drives/1024/Users-icon.png"/>
+         {% endif %}
+     </div>
+     <div class="col-md-4">
+         <h3>Name:{{ worker.firstname }}</h3>
+         <h6>Category:{{ worker.category }}</h6>
+         <h6>Rate:${{ worker.rate }}</h6>
+         <h6>Location:{{ worker.location }}</h6>
+
+     </div>
+     <div class="col-md-2">
+        <a href="{% url 'detail' worker.id %}" class="btn btn-warning">Details</a>
     </div>
+
+</div>
+
+<br><br>
+{% endfor %}
+{% endif %}
+{% if searchsl %}
+{% for worker in searchsl %}
+
+<div class="row">
+ <div class="col-md-3 offset-md-2">
+     {% if worker.image%}
+       <img class="card" height="150px" width = "150px" src="{{ worker.image.url }}"/>
+     {% else %}
+        <img class="card" height="150px" width = "150px" src="https://icons.iconarchive.com/icons/blackvariant/button-ui-system-folders-drives/1024/Users-icon.png"/>
+     {% endif %}
+ </div>
+ <div class="col-md-4">
+     <h3>Name:{{ worker.shopname }}</h3>
+     <h6>Category:{{ worker.category }}</h6>
+     <h6>Vendor:{{ worker.vendorname }}</h6>
+     <h6>Location:{{ worker.location }}</h6>
+
+ </div>
+ <div class="col-md-2">
+    <a href="{% url 'detailsupplier' worker.id %}" class="btn btn-warning">Details</a>
+</div>
+
+</div>
+
+<br><br>
+{% endfor %}
+{% endif %}
+   
 <div class="col-md-2 offset-md-2">
     <br>
     <a href="{% url 'home' %}" class="btn btn-warning">Back</a>

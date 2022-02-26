@@ -1,9 +1,10 @@
 from multiprocessing import context
+from pickle import READONLY_BUFFER
 from urllib import request
 from django import forms
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from .models import Worker,Supplier,Customer
+from .models import Worker,Supplier,Customer,Workers
 
 from django.contrib.auth.models import User,auth
 
@@ -20,6 +21,7 @@ def register(request):
          
 
          if password1 == password2 and role == "1" :
+            
              if User.objects.filter(username =username).exists():
                  messages.info(request,'Username already exist...')
                  return redirect('register')
@@ -145,7 +147,11 @@ def home(request):
     # print(worker_list)
     return render(request,'use/home.html',context)
 def supplierhome(request):
-    return render(request,'use/supplierhome.html')
+     supplier_list = Supplier.objects.all()
+     context={
+        'supplier_list':supplier_list
+        }
+     return render(request,'use/supplierhome.html',context)
 def customerhome(request):
     return render(request,'use/customerhome.html')    
 
@@ -161,9 +167,10 @@ def customerupdate(request):
     return render(request,'use/customer_update.html')
 
 def workerprofile(request):
+ 
 
      if request.method == 'POST':
-        worker= Worker()
+        worker= Workers()
         worker.firstname = request.POST['firstname']
         worker.lastname  = request.POST['lastname']
         worker.phone = request.POST['phone']
@@ -172,7 +179,7 @@ def workerprofile(request):
         worker.location=request.POST['location']
         worker.category = request.POST['category']
         worker.availability=request.POST['availability']
-        
+       
         if len(request.FILES) != 0:
               worker.image = request.FILES['image']
 
@@ -237,6 +244,13 @@ def detail(request,worker_id):
         'worker':worker,
     }
     return render(request,'use/worker_detail.html',context)
+def detailsupplier(request,supplier_id):
+    supplier = Supplier.objects.get(pk=supplier_id)   
+    context ={
+        'supplier':supplier
+    }
+    print(context)
+    return render(request,'use/supplier_detail.html',context) 
 
 def searchdisplay(request):
     context={}
@@ -246,16 +260,29 @@ def searchdisplay(request):
         
         if  word == "":
             return redirect(request,'home')
-        else:     
-           searchwr= Worker.objects.filter(location__contains=word).all()
+        else:  
+            if role == "1": 
+           
+               searchwr= Worker.objects.filter(location__contains=word).all()
               
-           context={
+               context={
                      'searchwr': searchwr
                  }
-        #    if searchwr:
-        #         #  print(searchwr)
-              
-           print(context)
-           return redirect('searchdisplay')
+            elif role == "2": 
+               print(role)
+               searchsl= Supplier.objects.filter(location__contains=word).all()
+               print(searchsl)
+               context={
+                     'searchsl': searchsl
+                 }
+               return render(request,'use/workersearch.html',context)       
+      
+            elif role =="3": 
+               searchc=Customer.objects.filter(location__contains=word).all()
+                  
+               context= {
+                     'searchc': searchc
+                 }   
+               return render(request,'use/workersearch.html',context)
            
     return render(request,'use/workersearch.html',context)
