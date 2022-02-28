@@ -34,7 +34,7 @@ def register(request):
              else:
                  user = User.objects.create_user(username=username,password=password1,email=email)
                  user.save()
-                 print(role)
+              
                  messages.info(request,'user created...')
                  return redirect('workerupdate')
        
@@ -88,14 +88,14 @@ def alllogin(request):
     return render(request,'use/alllogin.html')         
 
 def login(request):
-
+   
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
 
         user = auth.authenticate(username=username,password=password)
 
-        if user is not None:
+        if user is not None :
             auth.login(request,user)
             return redirect('home')
         else:
@@ -153,7 +153,15 @@ def supplierhome(request):
         }
      return render(request,'use/supplierhome.html',context)
 def customerhome(request):
-    return render(request,'use/customerhome.html')    
+    worker_list = Worker.objects.all()
+    supplier_list = Supplier.objects.all()
+    context={
+        'worker_list':worker_list,
+        'supplier_list':supplier_list
+        }
+    # print(worker_list)
+    return render(request,'use/customerhome.html',context)
+     
 
 def workerupdate(request):
     return render(request,'use/worker_update.html')
@@ -168,9 +176,9 @@ def customerupdate(request):
 
 def workerprofile(request):
  
-
+ 
      if request.method == 'POST':
-        worker= Workers()
+        worker= Worker()
         worker.firstname = request.POST['firstname']
         worker.lastname  = request.POST['lastname']
         worker.phone = request.POST['phone']
@@ -179,7 +187,8 @@ def workerprofile(request):
         worker.location=request.POST['location']
         worker.category = request.POST['category']
         worker.availability=request.POST['availability']
-       
+        # worker.user = 
+        
         if len(request.FILES) != 0:
               worker.image = request.FILES['image']
 
@@ -213,29 +222,25 @@ def supplierprofile(request):
         
         print("Supplier profile created")
 
-     return render(request,'use/login.html',)
+     return render(request,'use/supplierlogin.html',)
 
 def customerprofile(request):
     
       if request.method == 'POST':
-        firstname = request.POST['firstname']
-        lastname  = request.POST['lastname']
-        location=request.POST['location']
-        phone = request.POST['phone']
-        
-     
+        customer =Customer() 
+        customer.firstname = request.POST['firstname']
+        customer.lastname  = request.POST['lastname']
+        customer.phone = request.POST['phone']     
+        customer.location=request.POST['location']
+      
+         
+        if len(request.FILES) != 0:
+              customer.image = request.FILES['image']
 
-        context= {'firstname':firstname,
-                   'lastname':lastname,
-                   'phone':phone,
-                   'location':location
-                   
-        }
-        customer = Customer(firstname=firstname,lastname=lastname,phone=phone,location=location)
         customer.save()
         print("Customer profile created")
 
-      return render(request,'use/profile_customer.html',context)     
+      return render(request,'use/customerlogin.html')     
 
 def detail(request,worker_id):
     worker = Worker.objects.get(pk=worker_id)
@@ -286,3 +291,8 @@ def searchdisplay(request):
                return render(request,'use/workersearch.html',context)
            
     return render(request,'use/workersearch.html',context)
+
+def post(request):
+    return render(request,'use/post.html')
+def supplierpost(request):
+    return render(request,'use/supplierpost.html')    

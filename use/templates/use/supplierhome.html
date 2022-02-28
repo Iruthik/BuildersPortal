@@ -63,7 +63,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0 align-middle">
+                                <a href="{% url 'supplierpost' %}" class="nav-link px-0 align-middle">
                                     <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Create Post</span></a>
                                 </li>
                                 <li>
@@ -118,7 +118,7 @@
               </div>
               <div class="col-md-4">
                   <h3>Name:{{ supplier.shopname }}</h3>
-                  <h6>Vendour:${{ supplier.vendorname }}</h6>
+                  <h6>Vendor:{{ supplier.vendorname }}</h6>
                   <h6>Category:{{ supplier.category }}</h6>
                   <h6>Location:{{ supplier.location }}</h6>
 

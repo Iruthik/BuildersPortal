@@ -25,4 +25,6 @@ path('register/customerprofile',views.customerprofile,name='customerprofile'),
 path('supplierdetail/<int:worker_id>/',views.detail,name='detail'),
 path('register/home/<int:supplier_id>/',views.detailsupplier,name='detailsupplier'),
 path('register/search',views.searchdisplay,name='searchdisplay'),
+path('post',views.post,name='post'),
+path('supplierpost',views.supplierpost,name='supplierpost'),
 ]

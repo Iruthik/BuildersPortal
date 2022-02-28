@@ -113,16 +113,39 @@
 
 
     {% endfor %}
+    {% for supplier in supplier_list %}
+
+    <div class="row ">
+     <div class="col-md-3 offset-md-2  ">
+         {% if supplier.image%}
+           <img class="card" height="150px" width = "150px" src="{{ supplier.image.url }}"/>
+         {% else %}
+            <img class="card" height="150px" width = "150px" src="https://icons.iconarchive.com/icons/blackvariant/button-ui-system-folders-drives/1024/Users-icon.png"/>
+         {% endif %}
+     </div>
+     <div class="col-md-4">
+         <h3>ShopName:{{ supplier.shopname }}</h3>
+         <h>Vendor{{ supplier.vendorname }}</h6>>
+         <h6>Category:{{ supplier.category }}</h6>
+         <h6>Location:{{ supplier.location }}</h6>
+
+     </div>
+     <div class="col-md-2">
+         <a href="{% url 'detailsupplier' supplier.id %}" class="btn btn-warning">Details</a>
+     </div>
+
+</div>
 
 
-                </div>
+{% endfor %}
 
 
-        </div>
+                
+       
 
-
-            </div>
-
+       </div>   
+    </div>  
+    
 
 
 

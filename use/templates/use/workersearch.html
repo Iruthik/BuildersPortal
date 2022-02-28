@@ -42,6 +42,10 @@
      <div class="col-md-2">
         <a href="{% url 'detail' worker.id %}" class="btn btn-warning">Details</a>
     </div>
+    <div class="col-md-2 offset-md-2">
+        <br>
+        <a href="{% url 'home' %}" class="btn btn-warning">Back</a>
+        </div>
 
 </div>
 
@@ -74,11 +78,13 @@
 
 <br><br>
 {% endfor %}
-{% endif %}
-   
 <div class="col-md-2 offset-md-2">
     <br>
-    <a href="{% url 'home' %}" class="btn btn-warning">Back</a>
+    <a href="{% url 'supplierhome' %}" class="btn btn-warning">Back</a>
+    </div>
   
+{% endif %}
+   
+
 </body>
 </html>
