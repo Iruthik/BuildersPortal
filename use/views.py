@@ -296,3 +296,5 @@ def post(request):
     return render(request,'use/post.html')
 def supplierpost(request):
     return render(request,'use/supplierpost.html')    
+def addproduct(request):
+    return render(request,'use/addproduct.html')    
